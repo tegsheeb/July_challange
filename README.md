@@ -1,2 +1,2 @@
-# July_challange
-Leet Code July Challange
+# Algorithm Problems
+Leet Code monthly challanges, and Algorithm and DS Stanford Online class 
