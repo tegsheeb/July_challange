@@ -1,20 +1,22 @@
+import jdk.nashorn.internal.runtime.arrays.NumericElements;
+
 public class Receipt {
 
   private Store store;
   private int numberOfItems;
-  private double totalAmount;
-  private String receiptId;
+  private double total;
+  private String receiptID;
   public static final int DEFAULT_NUMBER_OF_ITEM = 1;
 
-	public Receipt(Store store, int numberOfItems, double totalAmount, String receiptId) {
+	public Receipt(Store store, int numberOfItems, double total, String receiptID) {
 		this.store = store;
     this.numberOfItems = numberOfItems;
-    this.totalAmount = totalAmount;
-    this.receiptId = receiptId;
+    this.total = total;
+    this.receiptID = receiptID;
   }
 
-  public Receipt (Store store, double totalAmount, String receiptId) {
-    this(store, DEFAULT_NUMBER_OF_ITEM, totalAmount, receiptId);
+  public Receipt (Store store, double total, String receiptID) {
+    this(store, DEFAULT_NUMBER_OF_ITEM, total, receiptID);
   }
 
   public void setStore (Store store) {
@@ -27,12 +29,12 @@ public class Receipt {
     }
   }
 
-  public void setTotalAmount (double totalAmount) {
-    this.totalAmount = totalAmount;
+  public void setTotal (double total) {
+    this.total = total;
   }
 
-  public void setReceiptId (String receiptId) {
-    this.receiptId = receiptId;
+  public void setReceiptID (String receiptID) {
+    this.receiptID = receiptID;
   }
 
   public Store getStore() {
@@ -43,13 +45,45 @@ public class Receipt {
     return numberOfItems;
   }
 
-  public double getTotalAmount () {
-    return totalAmount;
+  public double getTotal () {
+    return total;
   }
 
-  public String getReceiptId () {
-    return receiptId;
+  public String getReceiptID () {
+    return receiptID;
   }
 
+  @Override
+  public String toString() {
+    return "Receipt " + receiptID + " Store: " + store + "" + numberOfItems + (numberOfItems > 1 ? " items" : " item") + " Total:$" + total;
+  }
 
+  @Override
+  public boolean equals(Object obj) {
+    if (obj instanceof Receipt) {
+      Receipt other = (Receipt) obj;
+      return this.store.equals(other.store) &&
+        (this.numberOfItems == other.numberOfItems) &&
+        (this.total == other.total) && this.receiptID.equalsIgnoreCase(other.receiptID);
+    } else {
+      return false;
+    }
+  }
+
+  public boolean meetsReceiptCriteria(char firstChar,  char secondChar,  int timesAfter) {
+    for (int i = 0; i < receiptID.length(); i++) {
+      if (receiptID.charAt(i) == firstChar) {
+        int counter = 0;
+        for (int j = i + 1; j < receiptID.length(); j++) {
+          if (receiptID.charAt(j) == secondChar) {
+            counter++;
+          }
+        }
+        if(counter == timesAfter) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
 }
