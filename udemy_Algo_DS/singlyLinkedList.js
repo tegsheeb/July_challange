@@ -103,6 +103,20 @@ class SinglyLinkedList {
     this.length++;
     return true;
   }
+
+  remove(index) {
+    if(index < 0 || index > this.length) return undefined;
+    if(index === 0) return this.shift();
+    if(index === this.length) return this.pop();
+
+    let prevNod = this.get(index - 1);
+    let removed = prevNod.next;
+    prev.next = removed.next;
+    this.length--;
+    return removed;
+  }
+
+  
 }
 
 let list = new SinglyLinkedList();
