@@ -41,6 +41,10 @@ class DoublyLinkedList {
     this.length--;
     return oldTail;
   }
+
+  shift() {
+    
+  }
 }
 
 let list = new DoublyLinkedList();
