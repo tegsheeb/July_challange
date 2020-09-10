@@ -109,14 +109,28 @@ class SinglyLinkedList {
     if(index === 0) return this.shift();
     if(index === this.length) return this.pop();
 
-    let prevNod = this.get(index - 1);
-    let removed = prevNod.next;
-    prev.next = removed.next;
+    let prevNode = this.get(index - 1);
+    let removed = prevNode.next;
+    prevNode.next = removed.next;
     this.length--;
     return removed;
   }
 
-  
+  reverse() {
+    let node = this.head;
+    this.head = this.tail;
+    this.tail = node;
+
+    let prev = null;
+    let next;
+    for(var i = 0; i < this.length; i++) {
+      next = node.next;
+      node.next = prev;
+      prev = node;
+      node = next;
+    }
+    return this;
+  }
 }
 
 let list = new SinglyLinkedList();
