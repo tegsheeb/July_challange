@@ -2,42 +2,42 @@ import java.util.*;
 
 /*
  * NOTES ON USING THIS TESTER
- * 
+ *
  * This tester file automates some tests to help you confirm that your code works and track down errors.
  * Note that some tests cannot be tested automatically, but rely on you reviewing the results. For example,
  * when testing toString output, you must visually confirm the results.
- * 
+ *
  * You can ignore the use of generics in the tester methods (after the main method). These methods use
  * generics at a level beyond which we use in our class. I only use them here to make this a robust and
  * useful testing file. You are NOT required to understand the use of generics in this way.
- * 
+ *
  */
 
 public class TrioTester {
 
 	private static boolean passGetterSetter = true, passHasDuplicates = true, passCount = true, passEquals = true;
-	
+
 	public static void main(String[] args) {
 
 		// ************TESTING GENERIC TYPE************
 		Trio<Integer> numberTrio = new Trio<Integer>(3, 4, 5);
 		/* un-comment the line of code below and it should cause a compiler error because trio1 should only accept Strings  */
 		//numberTrio.setItem2("apple");
-		
+
 		Trio<String> wordTrio = new Trio<String>("hello");
 		wordTrio.setItem2("goodbye");
 		wordTrio.setItem3("farewell");
 		/* un-comment the line of code below and it should cause a compiler error because wordTrio should only accept Strings  */
 		//wordTrio.setItem2(3);
 
-		
+
 		System.out.println("************TESTING TOSTRING METHOD************");
 		System.out.println("Code should print a text representation of the Trio that contains(3, 4, 5):");
 		System.out.println(numberTrio);
 		System.out.println("Code should print a text representation of the Trio that contains (hello, goodbye, farewell):");
 		System.out.println(wordTrio);
-		
-		
+
+
 		System.out.println("\n************TESTING GETTERS AND SETTERS METHOD************");
 		testGetterSetter(numberTrio, 1, 3); // testing getItem1 method
 		testGetterSetter(numberTrio, 2, 4); // testing getItem2 method
@@ -48,11 +48,11 @@ public class TrioTester {
 		testGetterSetter(numberTrio, 1, 6); // testing getItem1 method
 		testGetterSetter(numberTrio, 2, 7); // testing getItem2 method
 		testGetterSetter(numberTrio, 3, 8); // testing getItem3 method
-		
+
 		System.out.println("***Getter/Setter tests: " + (passGetterSetter ? "Passed" : "AT LEAST ONE TEST FAILED"));
 
-			
-		System.out.println("\n************TESTING HASDUPLICATES METHOD************");		
+
+		System.out.println("\n************TESTING HASDUPLICATES METHOD************");
 		numberTrio = new Trio<Integer>(3, 4, 5);
 		testHasDuplicates(numberTrio, false);
 		numberTrio = new Trio<Integer>(3, 3, 5);
@@ -68,7 +68,7 @@ public class TrioTester {
 
 		System.out.println("***hasDuplicates tests: " + (passHasDuplicates ? "Passed" : "AT LEAST ONE TEST FAILED"));
 
-		
+
 		System.out.println("\n************TESTING COUNT METHOD************");
 		numberTrio = new Trio<Integer>(3, 4, 5);
 		testCount(numberTrio, 7, 0);
@@ -92,17 +92,17 @@ public class TrioTester {
 		testCount(wordTrio, "A", 0);
 
 		System.out.println("***count tests: " + (passCount ? "Passed" : "AT LEAST ONE TEST FAILED"));
-		
-		
+
+
 		System.out.println("\n************TESTING REPLACE ALL METHOD************");
-		numberTrio.replaceAll(43);
-		System.out.println("Code should print a text representation of the Trio that contains(43, 43, 43):");
-		System.out.println(numberTrio);
-		testCount(numberTrio, 43, 3);
-		testHasDuplicates(numberTrio, true);
-			
-		
-		System.out.println("\n************TESTING EQUALS METHOD************");	
+		// numberTrio.replaceAll(43);
+		// System.out.println("Code should print a text representation of the Trio that contains(43, 43, 43):");
+		// System.out.println(numberTrio);
+		// testCount(numberTrio, 43, 3);
+		// testHasDuplicates(numberTrio, true);
+
+
+		System.out.println("\n************TESTING EQUALS METHOD************");
 		Trio<String> wordTrio2 = new Trio<String>(new String("aa"), new String("bb"), new String("cc"));
 		Trio<String> wordTrio3 = new Trio<String>(new String("aa"), new String("bb"), new String("cc"));
 		testEquals(wordTrio2, wordTrio3, true, "no duplicates, same items in same order");
@@ -110,33 +110,33 @@ public class TrioTester {
 		Trio<Character> charTrio1 = new Trio<Character>('a', 'b', 'c');
 		Trio<Character> charTrio2 = new Trio<Character>('b', 'c', 'a');
 		testEquals(charTrio1, charTrio2, true, "no duplicates, same items in different order");
-		
+
 		Trio<Integer> numberTrio2 = new Trio<Integer>(5, 6, 8);
 		Trio<Integer> numberTrio3 = new Trio<Integer>(8, 5, 6);
 		testEquals(numberTrio2, numberTrio3, true, "no duplicates, same items in different order");
-		
+
 		numberTrio2 = new Trio<Integer>(1, 2, 1);
 		numberTrio3 = new Trio<Integer>(1, 1, 2);
 		testEquals(numberTrio2, numberTrio3, true, "duplicates, same items in different order");
-		
+
 		numberTrio2 = new Trio<Integer>(2, 1, 1);
 		numberTrio3 = new Trio<Integer>(1, 1, 2);
 		testEquals(numberTrio2, numberTrio3, true, "duplicates, same items in different order");
-		
+
 		numberTrio2 = new Trio<Integer>(5, 5, 8);
 		numberTrio3 = new Trio<Integer>(8, 5, 6);
 		testEquals(numberTrio2, numberTrio3, false, "different items");
-		
+
 		numberTrio2 = new Trio<Integer>(1, 1, 2);
 		numberTrio3 = new Trio<Integer>(1, 2, 2);
 		testEquals(numberTrio2, numberTrio3, false, "same items, but different items are duplicated");
-		
+
 		numberTrio2 = new Trio<Integer>(2, 1, 2);
 		numberTrio3 = new Trio<Integer>(1, 2, 1);
 		testEquals(numberTrio2, numberTrio3, false, "same items, but different items are duplicated");
-		
+
 		testEquals(numberTrio2, wordTrio, false, "different items and types");
-		
+
 		numberTrio2 = new Trio<Integer>(1, 2, 3);
 		numberTrio3 = new Trio<Integer>(3, 2, 1);
 		testEquals(numberTrio2, numberTrio3, true, "no duplicates, same items in different order");
@@ -145,8 +145,8 @@ public class TrioTester {
 		System.out.println(numberTrio2);
 		System.out.println("Code should print a text representation of the Trio that contains(3, 2, 1) (in that order):");
 		System.out.println(numberTrio3);
-		
-		boolean result = numberTrio.equals(4); 
+
+		boolean result = numberTrio.equals(4);
 		if(result==true) {
 			passEquals = false;
 		}
@@ -159,7 +159,7 @@ public class TrioTester {
 			passEquals = false;
 		}
 		System.out.println("\nCheck of the equals method used in methods such as contains: result should be true:" + result);
-		
+
 		System.out.println("***equals tests: " + (passEquals ? "Passed" : "AT LEAST ONE TEST FAILED"));
 
 		if(passGetterSetter && passHasDuplicates && passCount && passEquals) {
@@ -168,14 +168,14 @@ public class TrioTester {
 			System.out.println("\n\n******Summary: ERROR: There is failure in at least one automated test. Review the output above for details.");
 		}
 	}
-	
+
 	public static <T> void testGetterSetter(Trio<T> trio, int position, T expectedValue) {
 		T actualResult;
 		if(position==1) {
 			actualResult = trio.getItem1();
 		} else if(position==2) {
 			actualResult = trio.getItem2();
-		} else { // position==3 
+		} else { // position==3
 			actualResult = trio.getItem3();
 		}
 		String failure = "";
@@ -183,9 +183,9 @@ public class TrioTester {
 			passGetterSetter = false;
 			failure = "\tTEST FAILED";
 		}
-		System.out.println("Getting item at" + position + "\texpected=" + expectedValue + "\tactual=" + actualResult + "  " + failure);	
+		System.out.println("Getting item at" + position + "\texpected=" + expectedValue + "\tactual=" + actualResult + "  " + failure);
 	}
-	
+
 	public static <T> void testHasDuplicates(Trio<T> trio, boolean expectedResult) {
 		boolean actualResult = trio.hasDuplicates();
 		String failure = "";
@@ -194,7 +194,7 @@ public class TrioTester {
 			failure = "\tTEST FAILED";
 		}
 		String trioDescription = "(" + trio.getItem1() + ", " + trio.getItem2() + ", " + trio.getItem3() + ")";
-		System.out.println("Trio " + trioDescription + " has duplicates? \texpected=" + expectedResult + "\tactual=" + actualResult + "  " + failure);	
+		System.out.println("Trio " + trioDescription + " has duplicates? \texpected=" + expectedResult + "\tactual=" + actualResult + "  " + failure);
 	}
 	public static <T> void testCount(Trio<T> trio, T value, int expectedCount) {
 		int actualCount = trio.count(value);
@@ -204,9 +204,9 @@ public class TrioTester {
 			failure = "\tTEST FAILED";
 		}
 		String trioDescription = "(" + trio.getItem1() + ", " + trio.getItem2() + ", " + trio.getItem3() + ")";
-		System.out.println("Trio " + trioDescription + "\tCount of " + value + "\texpected=" + expectedCount + "\tactual=" + actualCount + "  " + failure);	
+		System.out.println("Trio " + trioDescription + "\tCount of " + value + "\texpected=" + expectedCount + "\tactual=" + actualCount + "  " + failure);
 	}
-	
+
 	public static <T, S> void testEquals(Trio<T> trio1, Trio<S> trio2, boolean expectedResult, String message) {
 		boolean actualResult = trio1.equals(trio2);
 		String failure = "";
@@ -216,9 +216,9 @@ public class TrioTester {
 		}
 		String trio1Description = "(" + trio1.getItem1() + ", " + trio1.getItem2() + ", " + trio1.getItem3() + ")";
 		String trio2Description = "(" + trio2.getItem1() + ", " + trio2.getItem2() + ", " + trio2.getItem3() + ")";
-		System.out.println("Trio 1 " + trio1Description + "\tTrio 2 " + trio2Description + "\tequal?\texpected=" + expectedResult + "\tactual=" + actualResult + "  " + failure);		
+		System.out.println("Trio 1 " + trio1Description + "\tTrio 2 " + trio2Description + "\tequal?\texpected=" + expectedResult + "\tactual=" + actualResult + "  " + failure);
 	}
-	
+
 
 
 }
