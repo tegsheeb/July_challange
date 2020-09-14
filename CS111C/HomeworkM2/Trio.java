@@ -70,12 +70,22 @@ public class Trio<T> {
     if(obj instanceof Trio<?>) {
       Trio<T> otherTrio = (Trio<T>) obj;
       if(this.count(otherTrio.getItem1()) > 0 && this.count(otherTrio.getItem2()) > 0 && this.count(otherTrio.getItem3()) > 0) {
-        return true;
-      } else {
-        return false;
+        if(!this.hasDuplicates() && !otherTrio.hasDuplicates()){
+          return true;
+        } else {
+          if((this.getItem1()).equals(this.getItem2())) {
+            return otherTrio.count(this.getItem1())==2;
+          }
+          if((this.getItem1()).equals(this.getItem3())) {
+            return otherTrio.count(this.getItem1())==2;
+          }
+          if((this.getItem2()).equals(this.getItem3())) {
+            return otherTrio.count(this.getItem2())==2;
+          }
+        }
       }
-    } else {
       return false;
     }
+    return false;
   }
 }

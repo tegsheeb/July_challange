@@ -22,13 +22,13 @@ public class TrioTester {
 		// ************TESTING GENERIC TYPE************
 		Trio<Integer> numberTrio = new Trio<Integer>(3, 4, 5);
 		/* un-comment the line of code below and it should cause a compiler error because trio1 should only accept Strings  */
-		//numberTrio.setItem2("apple");
+		// numberTrio.setItem2("apple");
 
 		Trio<String> wordTrio = new Trio<String>("hello");
 		wordTrio.setItem2("goodbye");
 		wordTrio.setItem3("farewell");
 		/* un-comment the line of code below and it should cause a compiler error because wordTrio should only accept Strings  */
-		//wordTrio.setItem2(3);
+		// wordTrio.setItem2(3);
 
 
 		System.out.println("************TESTING TOSTRING METHOD************");
@@ -95,11 +95,11 @@ public class TrioTester {
 
 
 		System.out.println("\n************TESTING REPLACE ALL METHOD************");
-		// numberTrio.replaceAll(43);
-		// System.out.println("Code should print a text representation of the Trio that contains(43, 43, 43):");
-		// System.out.println(numberTrio);
-		// testCount(numberTrio, 43, 3);
-		// testHasDuplicates(numberTrio, true);
+		numberTrio.replaceAll(43);
+		System.out.println("Code should print a text representation of the Trio that contains(43, 43, 43):");
+		System.out.println(numberTrio);
+		testCount(numberTrio, 43, 3);
+		testHasDuplicates(numberTrio, true);
 
 
 		System.out.println("\n************TESTING EQUALS METHOD************");
