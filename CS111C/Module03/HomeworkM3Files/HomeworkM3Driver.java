@@ -170,26 +170,58 @@ public class HomeworkM3Driver {
 			}
 			return true;
 		}
-
 	}
 	
 	public static ListInterface<String> createListContainingChar(ListInterface<String> wordList, char key) {
-		// YOUR CODE HERE
-		return new AList<String>();
+		ListInterface<String> resultList = new AList<String>();
+
+		for(int i = 1; i<= wordList.getLength(); i++) {
+			String currentWord = wordList.getEntry(i);
+			if(currentWord.indexOf('a') >= 0) {
+				resultList.add(currentWord);
+			}
+		}
+		return resultList;
 	}
 	
 	public static int lastPosition(List<String> wordList, String targetWord) {
-		// YOUR CODE HERE
-		return 0;
+		int lastPosition = -1;
+
+		for(int i = 0; i < wordList.size(); i++) {
+			if(wordList.get(i).equals(targetWord)) {
+				lastPosition = i;
+			}
+		}
+		return lastPosition;
 	}
 	
 	public static boolean equivalentLists(ListInterface<Integer> numberListInterface, List<Integer> numberList) {
-		// YOUR CODE HERE
-		return false;
+		if(numberListInterface.getLength() != numberList.size()) {
+			return false;
+		}
+
+		for (int i = 0; i < numberList.size(); i++) {
+			if(!numberListInterface.getEntry(i+1).equals(numberList.get(i))) {
+				return false;
+			}
+		}
+
+		return true;
 	}
 	
 	public static void prioritizeMaximumValue(List<Integer> numberList) {
-		// YOUR CODE HERE		
+		if(numberList.size() > 0) {
+			int maxValueIndex = 0;
+
+			for(int i = 0; i < numberList.size(); i++) {
+				if(numberList.get(i) > numberList.get(maxValueIndex)) {
+					maxValueIndex = i;
+				}
+			}
+
+			int maxValue = numberList.remove(maxValueIndex);
+			numberList.add(0, maxValue);
+		}
 	}
 	
 	

@@ -4,6 +4,7 @@
     @author Timothy M. Henry
     @version 5.0
 */
+
 public interface ListInterface<T>
 {
    /** Adds a new entry to the end of this list.
