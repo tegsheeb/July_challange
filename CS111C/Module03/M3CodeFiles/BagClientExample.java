@@ -76,11 +76,10 @@ public class BagClientExample {
 	}
 	
 	
-	
-	
-	
-	
-	
+	public static boolean isSet(BagInterface<String> wordBag) {
+		
+	}
+
 	
 	
 	
