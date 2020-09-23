@@ -22,4 +22,4 @@ var invertTree = function(root) {
     invertTree(root.right);
     
     return root;
-};
+};q
