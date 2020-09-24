@@ -117,6 +117,10 @@ class DoublyLinkedList {
     return true;
   }
 
+  remove(index) {
+    if(index < 0 || )
+  }
+
 
 }
 
