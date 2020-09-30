@@ -12,5 +12,7 @@ var checkPossibility = function(nums) {
         }
     }
     
+    
     return (index === null || index === 0 || index === nums.length - 2 || nums[index-1] <= nums[index+1] || nums[index] <= nums[index + 2]);
 };
+g"
