@@ -1,70 +1,100 @@
-public class ArrayFrontBackLimitedSizeList<T> implements FrontBackLimitedSizeListInterface<T> 
+import java.util.ArrayList;
+
+public class ArrayFrontBackLimitedSizeList<T> implements FrontBackLimitedSizeListInterface<T> {
 
     private T[] listArray;
     private int numberOfElements;
 
     public ArrayFrontBackLimitedSizeList(int maximumSize) {
-        T[] listArray = (T[]) new Object[maximumSize];
+        @SuppressWarnings("unchecked")
+        T[] tempList = (T[]) new Object[maximumSize];
+        listArray = tempList;
         numberOfElements = 0;
     }
 
-	@Override
 	public boolean addFront(T newEntry) {
 		// TODO Auto-generated method stub
 		return false;
-	}
-	@Override
+    }
+    
 	public boolean addBack(T newEntry) {
 		// TODO Auto-generated method stub
 		return false;
-	}
-	@Override
+    }
+    
 	public T removeFront() {
 		// TODO Auto-generated method stub
 		return null;
-	}
-	@Override
-	public T removeBack() {
+    }
+    
+    public T removeBack() {
 		// TODO Auto-generated method stub
 		return null;
-	}
-	@Override
+    }
+    
 	public void clear() {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
+        for (int index = 1; index <= numberOfElements; index++) {
+			listArray[index] = null;
+		}
+
+		numberOfElements = 0;
+    }
+    
 	public T getEntry(int givenPosition) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
+        if(validPosition(givenPosition)) {
+            return listArray[givenPosition];
+        } else {
+            return null;
+        }
+    }
+    
 	public int indexOf(T anEntry) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	@Override
+        int where = -1;
+
+        for (int i = 0; i < numberOfElements; i++) {
+            if(anEntry.equals(listArray[i])) {
+                where = i;
+            }
+        }
+
+        return where;
+    }
+    
 	public int lastIndexOf(T anEntry) {
 		// TODO Auto-generated method stub
 		return 0;
-	}
-	@Override
+    }
+    
 	public boolean contains(T anEntry) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	@Override
+        return indexOf(anEntry) >= 0;
+    }
+    
 	public int size() {
 		return numberOfElements;
-	}
-	@Override
+    }
+    
 	public boolean isEmpty() {
         return numberOfElements == 0;
     }
 
-    @Override
 	public boolean isFull() {
-		// TODO Auto-generated method stub
-		return false;
-	}
+        return listArray.length == numberOfElements;
+    }
+    
+    private boolean validPosition(int position) {
+		return position >= 0 && position <= numberOfElements;
+    }
+    
+    @Override
+    public String toString() {
+        String arrayString = "";
+        if (numberOfElements > 0) {
+            for (int i = 0; i < numberOfElements; i++) {
+                arrayString += listArray[i] + ", ";
+            }
+            arrayString = arrayString.substring(0, arrayString.length() - 2);
+        }
+
+        return "size=" + numberOfElements + "; capacity=" + listArray.length + "    " + "[" + arrayString + "]";
+    }
 }
