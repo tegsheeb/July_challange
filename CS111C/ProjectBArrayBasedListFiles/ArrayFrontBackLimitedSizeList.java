@@ -13,30 +13,57 @@ public class ArrayFrontBackLimitedSizeList<T> implements FrontBackLimitedSizeLis
     }
 
 	public boolean addFront(T newEntry) {
-		// TODO Auto-generated method stub
-		return false;
+        if (numberOfElements == listArray.length) {
+            return false;
+        } else {
+            for (int i = numberOfElements; i >= 1; i--) {
+                listArray[i] = listArray[i - 1];
+            }
+            listArray[0] = newEntry;
+            numberOfElements++;
+            return true;
+        }
     }
     
 	public boolean addBack(T newEntry) {
-		// TODO Auto-generated method stub
-		return false;
+        if (numberOfElements == listArray.length) {
+            return false;
+        } else {
+            listArray[numberOfElements] = newEntry;
+            numberOfElements++;
+            return true;
+        }
     }
     
 	public T removeFront() {
-		// TODO Auto-generated method stub
-		return null;
+        if (numberOfElements == 0) {
+            return null;
+        } else {
+            T removedElement = listArray[0];
+            for (int i = 0; i < numberOfElements - 1; i++) {
+                listArray[i] = listArray[i + 1];
+            }
+            listArray[numberOfElements - 1] = null;
+            numberOfElements--;
+            return removedElement;
+        }	
     }
     
     public T removeBack() {
-		// TODO Auto-generated method stub
-		return null;
+        if (numberOfElements == 0) {
+            return null;
+        } else {
+            T removedElement = listArray[numberOfElements - 1];
+            listArray[numberOfElements - 1] = null;
+            numberOfElements--;
+            return removedElement;
+        }
     }
     
 	public void clear() {
-        for (int index = 1; index <= numberOfElements; index++) {
+        for (int index = 0; index < numberOfElements; index++) {
 			listArray[index] = null;
 		}
-
 		numberOfElements = 0;
     }
     
@@ -50,7 +77,22 @@ public class ArrayFrontBackLimitedSizeList<T> implements FrontBackLimitedSizeLis
     
 	public int indexOf(T anEntry) {
         int where = -1;
+        boolean found = false;
+        int index = 0;
 
+        while(!found && index < numberOfElements) {
+            if(anEntry.equals(listArray[index])) {
+                where = index;
+                found = true;
+            }
+            index ++;
+        }
+        return where;
+    }
+    
+	public int lastIndexOf(T anEntry) {
+        int where = -1; 
+        
         for (int i = 0; i < numberOfElements; i++) {
             if(anEntry.equals(listArray[i])) {
                 where = i;
@@ -58,11 +100,6 @@ public class ArrayFrontBackLimitedSizeList<T> implements FrontBackLimitedSizeLis
         }
 
         return where;
-    }
-    
-	public int lastIndexOf(T anEntry) {
-		// TODO Auto-generated method stub
-		return 0;
     }
     
 	public boolean contains(T anEntry) {
@@ -95,6 +132,6 @@ public class ArrayFrontBackLimitedSizeList<T> implements FrontBackLimitedSizeLis
             arrayString = arrayString.substring(0, arrayString.length() - 2);
         }
 
-        return "size=" + numberOfElements + "; capacity=" + listArray.length + "    " + "[" + arrayString + "]";
+        return "size=" + numberOfElements + "; capacity=" + listArray.length + ";   " + "[" + arrayString + "]";
     }
 }
