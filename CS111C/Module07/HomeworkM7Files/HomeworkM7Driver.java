@@ -67,17 +67,57 @@ public class HomeworkM7Driver {
 	}
 
 	public static boolean qNotFollowedByU(String word) {
-		// YOUR CODE HERE
-		return false;
+		return qNotByURecursive(word.toLowerCase(), 0);
+	}
+
+	private static boolean qNotByURecursive(String word, int index) {
+		if(index == word.length()) {
+			return false;
+		} else {
+			if(index == word.length() - 1 && word.charAt(index) == 'q') {
+				return true;
+			} else if (word.charAt(index) == ('q') && word.charAt(index + 1) != 'u') {
+				return true;
+			} else {
+				return qNotByURecursive(word, index + 1);
+			}
+		}
+
 	}
 
 	public static void arrayReverse(int[] array) {
-		// YOUR CODE HERE
+		arrayReverseRecursive(array, 0, array.length - 1);
+	}
+
+	private static void arrayReverseRecursive(int[] array, int start, int end) {
+		if (start <= end) {
+			int tmp = array[start];
+			array[start] = array[end];
+			array[end] = tmp;
+			arrayReverseRecursive(array, start + 1, end - 1);
+		} else {
+			return;
+		}
 	}
 
 	public static int countPositives(BagInterface<Integer> bag) {
-		// YOUR EXTRA CREDIT CODE HERE
-		return 0;
+		return countPositivesRecursive(bag);
+	}
+	private static int countPositivesRecursive(BagInterface<Integer> bag){
+		if(bag.isEmpty()){
+			return 0;
+		} else {
+			Integer tmp = bag.remove();
+			if(tmp > 0) {
+				int counter = 1 + countPositivesRecursive(bag);
+				bag.add(tmp);
+				return counter;
+			} else {
+				int counter = countPositivesRecursive(bag);
+				bag.add(tmp);
+				return counter;
+			}
+		}
 	}
 
 
