@@ -55,7 +55,7 @@ public class Searches {
 				targetLocation = i;
 			} else if (numbers[i] > target) {
 				gonePastTarget = true;
-			}
+			} 
 		}
 		System.out.println("In linear search optimized for sorting, count is \t" + comparisonCount);
 		return targetLocation;
