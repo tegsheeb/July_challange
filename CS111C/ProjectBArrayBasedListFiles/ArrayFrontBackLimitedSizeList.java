@@ -95,7 +95,6 @@ public class ArrayFrontBackLimitedSizeList<T> implements FrontBackLimitedSizeLis
         
         for (int i = 0; i < numberOfElements; i++) {
             if(anEntry.equals(listArray[i])) {
-                where = i;
             }
         }
 
