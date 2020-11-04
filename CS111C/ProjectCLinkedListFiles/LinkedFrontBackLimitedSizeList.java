@@ -1,3 +1,4 @@
+
 public class LinkedFrontBackLimitedSizeList<T> implements FrontBackLimitedSizeListInterface<T> {
 
 	private Node head, tail;
@@ -36,8 +37,11 @@ public class LinkedFrontBackLimitedSizeList<T> implements FrontBackLimitedSizeLi
 	public T removeBack() {
 		return null;
 	}
-	public void clear() {
 
+	public void clear() {
+		head = null;
+		tail = null;
+		numberOfElements = 0;
 	}
 
 	public T getEntry(int givenPosition) {
@@ -68,6 +72,21 @@ public class LinkedFrontBackLimitedSizeList<T> implements FrontBackLimitedSizeLi
 		return numberOfElements == maximumSize;
 	}
 	
+    @Override
+    public String toString() {
+		String arrayString = "";
+		Node currentNode = head;
+        if (numberOfElements > 0) {
+            while(currentNode != null){
+				arrayString += head.data + ", ";
+				currentNode = currentNode.next;
+            }
+            arrayString = arrayString.substring(0, arrayString.length() - 2);
+        }
+
+        return "[" + arrayString + "]";
+    }
+
 	public class Node {
 		public T data;
 		public Node next;
