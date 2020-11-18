@@ -160,7 +160,6 @@ public class ProjectCDriver {
 		
 		/**/
 		// UNCOMMENT IF COMPLETING THE EXTRA CREDIT
-		
 		System.out.println("\n*****************************TESTING EXTRA CREDIT*****************************");
 		testCompareTo(new Integer[] {}, 10, new Integer[] {}, 10, PosNegZero.ZERO, "both empty lists");
 		testCompareTo(new Integer[] {}, 5, new Integer[] {}, 10, PosNegZero.ZERO, "both empty lists with different capacity");
@@ -172,7 +171,6 @@ public class ProjectCDriver {
 		testCompareTo(new Integer[] {1, 2, 6}, 10, new Integer[] {1, 2, 4}, 10, PosNegZero.POSITIVE, "for first mismatched element, the listA element [1, 2, 6] is larger than the listB element [1, 2, 4]");
 		testCompareTo(new Integer[] {1, 2, 3, 4, 7}, 10, new Integer[] {7}, 10, PosNegZero.NEGATIVE, "for first mismatched element, the listA element [1, 2, 3, 4, 7] is smaller than the listB element [7]");
 		testCompareTo(new Integer[] {3}, 10, new Integer[] {2, 1, 4, 3, 7}, 10, PosNegZero.POSITIVE, "for first mismatched element, the listA element [1, 2, 3, 4, 7] is smaller than the listB element [7]");
-		
 	}
 
 	/*
@@ -305,7 +303,6 @@ public class ProjectCDriver {
 
 		}
 	}
-	
 	public static <T extends Comparable<? super T>> void testCompareTo(T[] contentsListA, int sizeA, T[] contentsListB, int sizeB, PosNegZero expectedResult, String testDescription) {		
 		LinkedFrontBackLimitedSizeList<T> listA = new LinkedFrontBackLimitedSizeList<>(sizeA);
 		for(T item : contentsListA) {
@@ -334,8 +331,6 @@ public class ProjectCDriver {
 		}
 
 	}
-	
-
 	public static enum AddRemovePosition {
 		FRONT, BACK;
 		
