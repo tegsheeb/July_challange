@@ -25,9 +25,9 @@ class PriorityQueue {
 
     dequeue() {
         this.swap(0, this.values.length - 1);
-        const max = this.values.pop();
+        const min = this.values.pop();
         this.sinkDown();
-        return max;
+        return min;
     }
     
     swap (idx1,idx2) {
@@ -78,8 +78,11 @@ class Node {
 const er = new PriorityQueue();
 er.enqueue('cold', 10);
 er.enqueue('gun shot', 3);
-er.enqueue('high fever', 4);
+er.enqueue('high fever', 6);
+er.enqueue('broken arm', 4);
 
 console.log(er.values);
-er.dequeue();
+console.log(er.dequeue());
+console.log(er.values);
+console.log(er.dequeue());
 console.log(er.values);
