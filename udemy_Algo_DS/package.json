@@ -1,0 +1,16 @@
+{
+  "name": "udemy_algo_ds",
+  "version": "1.0.0",
+  "description": "",
+  "main": "BFS.js",
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^7.17.0",
+    "eslint-plugin-react": "^7.22.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
