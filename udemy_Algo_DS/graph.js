@@ -36,8 +36,12 @@ const testGraph = new Graph();
 testGraph.addVertex('tokyo');
 testGraph.addVertex('nyc');
 testGraph.addVertex('sf');
+testGraph.addVertex('paris');
+testGraph.addVertex('berlin');
 testGraph.addEdge('sf', 'tokyo');
 testGraph.addEdge('sf', 'nyc');
+testGraph.addEdge('paris', 'nyc');
+testGraph.addEdge('berlin', 'nyc');
 // testGraph.removeEdge('sf', 'tokyo');
 testGraph.removeVertex('tokyo');
 
