@@ -30,6 +30,10 @@ class Graph {
         delete this.adjacencyList[vertex];
     }
 
+    dfsRecursive() {
+
+    }
+
 }
 
 const testGraph = new Graph();

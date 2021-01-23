@@ -34,3 +34,19 @@ function getFile(file) {
 // is done.
 
 // ???
+
+const list = ['file1', 'file2', 'file3'];
+
+list
+.map(getFile)
+.reduce(
+	function combine (chain, pr) {
+		return chain.then(function() {
+			return pr;
+		}).then(output);
+	}, 
+	Promise.resolve()
+)
+.then(function(){
+	output('complete');
+})
