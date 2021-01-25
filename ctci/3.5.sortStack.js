@@ -1,3 +1,5 @@
+const assert = require('assert');
+
 const sortStack = (s)=> {
     let sorted = [];
     let tmp;
@@ -14,8 +16,24 @@ const sortStack = (s)=> {
     while(sorted.length > 0) {
         s.push(sorted.pop());
     }
+
+    return s;
 }
 
-let s1 = [19, 2, 3, 90, 25, 34];
+// Test Case 1
+let s1 = [19, 2, 3, 90, 25, 34]; // output: [ 90, 34, 25, 19, 3, 2 ]
 sortStack(s1);
-console.log(s1);
+// console.log(s1);
+
+// Test Case 2
+let s2 = []
+sortStack(s2)
+// console.log(s2 )
+
+///.....
+
+// console.log(sortStack[19, 2, 3, 90, 25, 24] === 'tomato') // output: [ 90, 34, 25, 19, 3, 2 ]
+
+// console.log('tomato'.toUpperCase() === 'TOMATO')
+assert('tomato'.toUpperCase() === 'TOMAssTO')
+assert.deepStrictEqual(sortStack([19, 2, 3, 90, 25, 34]), [90, 34, 25, 19, 3, 2]);
