@@ -1,8 +1,11 @@
 const quickSort = (arr, left = 0, right = arr.length - 1) => {
   if (left < right) {
     let mid = pivot(arr, left, right);
+    console.log('pivot: ',  mid);
     quickSort(arr, left, mid - 1);
+    console.log("left", arr);
     quickSort(arr, mid + 1, right);
+    console.log("right: ",arr);
   }
   return arr;
 }
